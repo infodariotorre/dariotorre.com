@@ -5,7 +5,7 @@
   --display:"Urbanist","Avenir Next","Segoe UI",system-ui,sans-serif;
   --body:"DM Sans","Segoe UI",system-ui,sans-serif;
   --logo:"Geist","Urbanist","Segoe UI",system-ui,sans-serif;
-  --nav-h:50px; --nav-top:20px;
+  --nav-h:50px; --nav-top:32px; /* 12px cornice della hero + 20px di respiro */
 }
 section[id],header[id]{scroll-margin-top:calc(var(--nav-h) + var(--nav-top) + 16px)}
 html{scroll-behavior:smooth;color-scheme:light}
@@ -324,7 +324,7 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
   .about-ph .float{right:12px}
 }
 @media (max-width:640px){
-  :root{--nav-h:48px;--nav-top:14px}
+  :root{--nav-h:48px;--nav-top:24px}
   .topbar{padding-inline:24px}
   .nav{padding-left:18px}
   .brand{font-size:18px}

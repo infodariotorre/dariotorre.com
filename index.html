@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;family=Geist:wght@400;500&amp;display=swap">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 
 <style>[hidden]{display:none!important}</style>
 </head>
@@ -121,7 +121,8 @@
       <p class="lead">Due prodotti, a tuo nome, che lavorano insieme. Il corso porta le persone, il software le tiene.</p>
     </div>
 
-    <div class="cards3">
+    <div class="model-grid">
+      <div class="model-cards">
       <article class="card violet rv">
         <div class="card-top"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="m10 9 4 2-4 2z"></path><path d="M8 21h8"></path></svg></span><span class="tag">Porta le persone</span></div>
         <h3>Il corso</h3>
@@ -132,17 +133,31 @@
         <h3>Il software</h3>
         <p>Rende il tuo metodo facile da applicare ogni giorno. Chi fa il corso lo usa e paga un abbonamento mensile.</p>
       </article>
-      <article class="card phone-card rv">
-        <h3>Poi incassa anche quando non ci sei</h3>
-        <div class="phone" aria-label="Esempio di notifiche di nuovi abbonamenti" role="img">
-          <div class="when"><span class="dot"></span>Oggi</div>
-          <div class="noti"><span class="ap">D</span><div><b>Nuovo abbonamento</b><span>Software · <span data-o="prezzoTxt">69,00 €</span></span></div><em>ora</em></div>
-          <div class="noti"><span class="ap">D</span><div><b>Rinnovo mensile</b><span>Software · <span data-o="prezzoTxt">69,00 €</span></span></div><em>8 min</em></div>
-          <div class="noti"><span class="ap">D</span><div><b>Nuova iscrizione</b><span>Corso completo</span></div><em>21 min</em></div>
-          <div class="noti"><span class="ap">D</span><div><b>Rinnovo mensile</b><span>Software · <span data-o="prezzoTxt">69,00 €</span></span></div><em>1 h</em></div>
-          <div class="noti"><span class="ap">D</span><div><b>Nuovo abbonamento</b><span>Software · <span data-o="prezzoTxt">69,00 €</span></span></div><em>2 h</em></div>
+      </div>
+      <figure class="model-phone rv">
+        <div class="iph-wrap" role="img" aria-label="Telefono con le notifiche di nuovi pagamenti: corso, abbonamenti e piani annuali del software">
+          <div class="iph" aria-hidden="true">
+            <i class="iph-btn b1"></i><i class="iph-btn b2"></i><i class="iph-btn b3"></i><i class="iph-btn b4"></i>
+            <div class="iph-bezel"><div class="iph-screen">
+              <div class="iph-glare"></div>
+              <div class="iph-island"><i></i></div>
+              <div class="iph-status"><span class="iph-sig"><i></i><i></i><i></i><i></i></span><svg width="17" height="12"><path d="M8.5 3.2C10.8 3.2 12.9 4.1 14.4 5.6L15.5 4.5C13.7 2.7 11.2 1.5 8.5 1.5C5.8 1.5 3.3 2.7 1.5 4.5L2.6 5.6C4.1 4.1 6.2 3.2 8.5 3.2Z" fill="#1e1c19"/><path d="M8.5 6.8C9.9 6.8 11.1 7.3 12 8.2L13.1 7.1C11.8 5.9 10.2 5.1 8.5 5.1C6.8 5.1 5.2 5.9 3.9 7.1L5 8.2C5.9 7.3 7.1 6.8 8.5 6.8Z" fill="#1e1c19"/><circle cx="8.5" cy="10.5" r="1.5" fill="#1e1c19"/></svg><span class="iph-bat"><span><i></i></span><b></b></span></div>
+              <div class="iph-lock"><span class="iph-padlock"><i></i><b></b></span><div class="iph-date" id="iph-date">Giovedì 2 luglio</div><div class="iph-time">9:41</div></div>
+              <div class="iph-list" data-notif-group>
+              <div class="iph-n" data-notif><div class="iph-app"><span>stripe</span></div><div class="iph-txt"><div class="iph-row"><b>Hai ricevuto 470,00 €</b><time>adesso</time></div><p>Chiara Ferrari · Piano annuale · Software</p></div></div>
+              <div class="iph-n" data-notif><div class="iph-app"><span>stripe</span></div><div class="iph-txt"><div class="iph-row"><b>Hai ricevuto 87,00 €</b><time>2 min fa</time></div><p>Marco Bianchi · Accesso al corso</p></div></div>
+              <div class="iph-n" data-notif><div class="iph-app"><span>stripe</span></div><div class="iph-txt"><div class="iph-row"><b>Hai ricevuto 69,00 €</b><time>5 min fa</time></div><p>Giulia Rossi · Abbonamento software</p></div></div>
+              <div class="iph-n" data-notif><div class="iph-app"><span>stripe</span></div><div class="iph-txt"><div class="iph-row"><b>Hai ricevuto 87,00 €</b><time>11 min fa</time></div><p>Sara Marino · Accesso al corso</p></div></div>
+              <div class="iph-n" data-notif><div class="iph-app"><span>stripe</span></div><div class="iph-txt"><div class="iph-row"><b>Hai ricevuto 470,00 €</b><time>18 min fa</time></div><p>Alessandro Conti · Piano annuale · Software</p></div></div>
+              <div class="iph-n" data-notif><div class="iph-app"><span>stripe</span></div><div class="iph-txt"><div class="iph-row"><b>Hai ricevuto 69,00 €</b><time>27 min fa</time></div><p>Lorenzo Greco · Abbonamento software</p></div></div>
+              <div class="iph-n" data-notif><div class="iph-app"><span>stripe</span></div><div class="iph-txt"><div class="iph-row"><b>Hai ricevuto 87,00 €</b><time>41 min fa</time></div><p>Francesca Romano · Accesso al corso</p></div></div>
+              <div class="iph-n" data-notif><div class="iph-app"><span>stripe</span></div><div class="iph-txt"><div class="iph-row"><b>Hai ricevuto 69,00 €</b><time>1 ora fa</time></div><p>Davide Costa · Abbonamento software</p></div></div>
+              </div>
+            </div></div>
+          </div>
         </div>
-      </article>
+        <figcaption>Poi incassa anche quando non ci sei.</figcaption>
+      </figure>
     </div>
 
     <div class="calc rv">
@@ -429,6 +444,21 @@
   var navEl=bar.querySelector('.nav');
   function onScroll(){var n=navEl.getBoundingClientRect();bar.classList.toggle('stuck', hero.getBoundingClientRect().bottom < n.top + n.height/2);}
   window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll); onScroll();
+  /* TELEFONO: notifiche che arrivano una dopo l'altra (ricostruito dal design originale) */
+  (function(){
+    var group=document.querySelector('[data-notif-group]'); if(!group) return;
+    var cards=[].slice.call(group.querySelectorAll('[data-notif]'));
+    var d=document.getElementById('iph-date');
+    try{var s=new Date().toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});d.textContent=s.charAt(0).toUpperCase()+s.slice(1);}catch(e){}
+    function setP(el,p){el.style.opacity=p;el.style.transform='translateY('+(-14*(1-p)).toFixed(2)+'px) scale('+(0.955+0.045*p).toFixed(3)+')';el.style.maxHeight=(160*p).toFixed(1)+'px';el.style.marginBottom=(10*p).toFixed(1)+'px';el.style.paddingTop=(11*p).toFixed(1)+'px';el.style.paddingBottom=(12*p).toFixed(1)+'px';}
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){cards.forEach(function(c){setP(c,1)});return;}
+    var timers=[],running=false;
+    function clear(){timers.forEach(clearTimeout);timers=[];}
+    function tween(el,dur){var steps=Math.max(1,Math.round(dur/24)),i=0;(function step(){i++;var t=i/steps;setP(el,1-Math.pow(1-t,3));if(i<steps)timers.push(setTimeout(step,24));})();}
+    function play(){clear();cards.forEach(function(c){setP(c,0)});var order=cards.slice().reverse();order.forEach(function(el,k){timers.push(setTimeout(function(){tween(el,420)},500+k*560));});timers.push(setTimeout(play,500+cards.length*560+3800));}
+    cards.forEach(function(c){setP(c,1)});
+    if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!running){running=true;play();}else if(!e.isIntersecting&&running){running=false;clear();cards.forEach(function(c){setP(c,1)});}});},{threshold:.3}).observe(group);}
+  })();
   document.getElementById('apply-form').addEventListener('submit',function(e){e.preventDefault();document.getElementById('form-wrap').hidden=true;document.getElementById('thanks').hidden=false;});
 })();
 </script>

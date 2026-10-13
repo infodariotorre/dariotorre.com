@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;family=Geist:wght@400;500&amp;display=swap">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 
 <style>[hidden]{display:none!important}</style>
 </head>
@@ -424,7 +424,8 @@
   steps.forEach(function(st,j){st.querySelector('.st-h').addEventListener('click',function(){show(st.classList.contains('on')?-1:j);});});
   show(0);
   var bar=document.getElementById('topbar'), hero=document.getElementById('hero');
-  function onScroll(){bar.classList.toggle('stuck', window.scrollY > hero.offsetTop + hero.offsetHeight - 8);}
+  var navEl=bar.querySelector('.nav');
+  function onScroll(){var n=navEl.getBoundingClientRect();bar.classList.toggle('stuck', hero.getBoundingClientRect().bottom < n.top + n.height/2);}
   window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll); onScroll();
   document.getElementById('apply-form').addEventListener('submit',function(e){e.preventDefault();document.getElementById('form-wrap').hidden=true;document.getElementById('thanks').hidden=false;});
 })();

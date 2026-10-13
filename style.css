@@ -4,7 +4,7 @@
   --violet:#6c4ad9; --violet-deep:#5333c2; --violet-soft:#ebe5fc; --night:#110d18; --night-2:#1d1727;
   --display:"Urbanist","Avenir Next","Segoe UI",system-ui,sans-serif;
   --body:"DM Sans","Segoe UI",system-ui,sans-serif;
-  --logo:"Bricolage Grotesque","Urbanist","Segoe UI",system-ui,sans-serif;
+  --logo:"Geist","Urbanist","Segoe UI",system-ui,sans-serif;
   --nav-h:64px; --nav-top:24px;
 }
 section[id],header[id]{scroll-margin-top:calc(var(--nav-h) + var(--nav-top) + 16px)}
@@ -51,26 +51,36 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance}
 .topbar{position:absolute;z-index:50;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + var(--nav-top));padding-inline:calc(12px + clamp(18px,4vw,48px));pointer-events:none}
 .topbar.stuck{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);animation:drop .5s cubic-bezier(.2,.8,.2,1) both}
 @keyframes drop{from{transform:translateY(-130%);opacity:0}to{transform:none;opacity:1}}
-.nav{pointer-events:auto;min-height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 24px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(20,14,28,.32);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 40px rgba(8,5,14,.18),inset 0 1px 0 rgba(255,255,255,.12);transition:background .35s ease,border-color .35s ease,box-shadow .35s ease}
-.topbar.stuck .nav{background:rgba(255,255,255,.8);border-color:rgba(108,74,217,.16);box-shadow:0 12px 40px rgba(40,20,90,.12),inset 0 1px 0 rgba(255,255,255,.8)}
-.topbar.stuck .brand{color:var(--ink)}
-.topbar.stuck .brand-a{color:var(--muted)}
-.topbar.stuck .links a{color:var(--muted)}
-.topbar.stuck .links a:hover{color:var(--ink)}
+/* effetto "liquid glass": sfocatura forte, riflesso in alto, bordo luminoso sfumato.
+   Solo CSS standard, quindi funziona anche su iPhone e Android */
+.nav{position:relative;isolation:isolate;pointer-events:auto;min-height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 26px;border:0;border-radius:999px;
+  background:linear-gradient(135deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 45%,rgba(255,255,255,.10) 100%);
+  backdrop-filter:blur(28px) saturate(190%) brightness(1.06);-webkit-backdrop-filter:blur(28px) saturate(190%) brightness(1.06);
+  box-shadow:0 14px 44px rgba(6,4,12,.28),inset 0 1px 1px rgba(255,255,255,.38),inset 0 -1px 1px rgba(255,255,255,.10),inset 0 0 24px rgba(255,255,255,.06);
+  transition:background .4s ease,box-shadow .4s ease}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(60% 160% at 12% -60%,rgba(255,255,255,.34),rgba(255,255,255,0) 60%),radial-gradient(40% 140% at 88% 160%,rgba(255,255,255,.16),rgba(255,255,255,0) 60%)}
+.nav::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.65),rgba(255,255,255,.08) 35%,rgba(255,255,255,.04) 65%,rgba(255,255,255,.4));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.topbar.stuck .nav{background:linear-gradient(135deg,rgba(255,255,255,.82) 0%,rgba(255,255,255,.6) 50%,rgba(255,255,255,.74) 100%);box-shadow:0 14px 44px rgba(40,20,90,.14),inset 0 1px 1px rgba(255,255,255,.95),inset 0 -1px 1px rgba(108,74,217,.08),inset 0 0 24px rgba(255,255,255,.5)}
+.topbar.stuck .nav::after{background:linear-gradient(120deg,rgba(255,255,255,1),rgba(108,74,217,.14) 40%,rgba(108,74,217,.08) 65%,rgba(255,255,255,.9))}
+.topbar.stuck .brand{color:#0c0910}
+.topbar.stuck .links a{color:#0c0910}
+.topbar.stuck .links a:hover{color:var(--violet)}
 .topbar.stuck .nav-cta{background:var(--violet);border-color:var(--violet);color:#fff}
 .topbar.stuck .nav-cta .ar{background:#fff;color:var(--violet)}
 .btn.glass{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .btn.glass:hover{background:rgba(255,255,255,.22);color:#fff}
 .btn.glass .ar{background:#fff;color:var(--ink)}
 .nav .btn.glass{padding-left:20px}
-/* LOGO: solo testo, nome leggero e cognome deciso */
-.brand{display:flex;align-items:baseline;gap:.28em;font-family:var(--logo);font-size:24px;line-height:1;letter-spacing:-.04em;color:#fff;text-decoration:none;transition:color .35s ease}
+/* LOGO: solo testo, un unico peso, uniforme */
+.brand{display:flex;align-items:baseline;gap:.3em;font-family:var(--logo);font-weight:500;font-size:22px;line-height:1;letter-spacing:-.02em;color:#fff;text-decoration:none;transition:color .35s ease}
 .brand:hover{color:#fff}
-.topbar.stuck .brand:hover{color:var(--ink)}
-.brand-a{font-weight:300;color:rgba(255,255,255,.78);transition:color .35s ease}
-.brand-b{font-weight:700}
-.links{display:flex;gap:28px;font-size:14px}
-.links a{color:rgba(255,255,255,.78);text-decoration:none;transition:color .25s ease}
+.topbar.stuck .brand:hover{color:#0c0910}
+.brand-a,.brand-b{font-weight:inherit;color:inherit}
+.links{display:flex;gap:28px;font-size:14px;font-weight:500}
+.links a{color:rgba(255,255,255,.86);text-decoration:none;transition:color .25s ease}
 .links a:hover{color:#fff}
 .dot{width:8px;height:8px;border-radius:50%;background:#9d84ff;box-shadow:0 0 0 4px rgba(157,132,255,.22);animation:pulse 2.4s ease-in-out infinite}
 .hero-copy{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3.2vh,32px);max-width:760px;padding-block:clamp(16px,4vh,48px)}
@@ -269,8 +279,8 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
 .foot-top a{color:var(--ink);text-decoration:none}
 .foot-top a:hover{color:var(--violet)}
 .giant{font-family:var(--logo);font-size:clamp(64px,15vw,230px);line-height:.95;letter-spacing:-.05em;white-space:nowrap;margin:36px 0 24px}
-.giant .brand-a{font-weight:300;color:#cfc4f0}
-.giant .brand-b{font-weight:700;color:var(--ink)}
+.giant .brand-a{font-weight:500;color:var(--ink)}
+.giant .brand-b{font-weight:500;color:#cfc4f0}
 .foot-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:20px;font-size:13px;color:var(--muted)}
 
 /* ANIMAZIONI */

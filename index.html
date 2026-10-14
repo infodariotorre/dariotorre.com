@@ -8,7 +8,7 @@
 <link rel="preload" href="fonts/urbanist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=1">
-<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="style.css?v=13">
 
 <style>[hidden]{display:none!important}</style>
 </head>
@@ -204,9 +204,18 @@
     </div>
 
     <p class="sub-h rv">Com'era davvero</p>
-    <div class="gal2">
-      <div class="phl land rv" role="img" aria-label="Spazio per una foto della Makeup Academy"><div><strong>Foto Makeup Academy</strong>Aula, set o lezione dal vivo</div></div>
-      <div class="phl land rv" role="img" aria-label="Spazio per una seconda foto della Makeup Academy"><div><strong>Foto Makeup Academy</strong>Piattaforma o evento</div></div>
+    <div class="car rv" data-car>
+      <div class="car-track" data-car-track tabindex="0" role="region" aria-label="Foto e video di Makeup Academy">
+      <figure class="car-item" style="--ar:16/9"><div class="phl" role="img" aria-label="Spazio per contenuto Makeup Academy: aula o lezione dal vivo"><div><strong>Foto · orizzontale</strong>Aula o lezione dal vivo</div></div></figure>
+      <figure class="car-item" style="--ar:9/16"><div class="phl" role="img" aria-label="Spazio per contenuto Makeup Academy: dietro le quinte sul set"><div><strong>Video · verticale</strong>Dietro le quinte sul set</div></div></figure>
+      <figure class="car-item" style="--ar:4/5"><div class="phl" role="img" aria-label="Spazio per contenuto Makeup Academy: studentesse al lavoro"><div><strong>Foto · verticale</strong>Studentesse al lavoro</div></div></figure>
+      <figure class="car-item" style="--ar:16/9"><div class="phl" role="img" aria-label="Spazio per contenuto Makeup Academy: evento o masterclass"><div><strong>Video · orizzontale</strong>Evento o masterclass</div></div></figure>
+      <figure class="car-item" style="--ar:9/16"><div class="phl" role="img" aria-label="Spazio per contenuto Makeup Academy: la piattaforma dei corsi"><div><strong>Foto · verticale</strong>La piattaforma dei corsi</div></div></figure>
+      </div>
+      <div class="car-nav">
+        <button class="car-btn" type="button" data-car-prev aria-label="Contenuto precedente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button class="car-btn" type="button" data-car-next aria-label="Contenuto successivo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+      </div>
     </div>
 
     <p class="sub-h rv">Cosa dicevano gli studenti</p>
@@ -461,6 +470,31 @@
     function play(){clear();cards.forEach(function(c){setP(c,0)});var order=cards.slice().reverse();order.forEach(function(el,k){timers.push(setTimeout(function(){tween(el,420)},500+k*560));});timers.push(setTimeout(play,500+cards.length*560+3800));}
     cards.forEach(function(c){setP(c,1)});
     if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!running){running=true;play();}else if(!e.isIntersecting&&running){running=false;clear();cards.forEach(function(c){setP(c,1)});}});},{threshold:.3}).observe(group);}
+  })();
+  (function(){
+    document.querySelectorAll('[data-car]').forEach(function(car){
+      var tr=car.querySelector('[data-car-track]'),pv=car.querySelector('[data-car-prev]'),nx=car.querySelector('[data-car-next]');
+      var items=[].slice.call(tr.children);
+      function upd(){
+        var max=tr.scrollWidth-tr.clientWidth-2;
+        car.classList.toggle('at-start',tr.scrollLeft<=2);car.classList.toggle('at-end',tr.scrollLeft>=max);
+        pv.disabled=tr.scrollLeft<=2;nx.disabled=tr.scrollLeft>=max;
+      }
+      function go(dir){
+        var x=tr.scrollLeft,base=tr.getBoundingClientRect().left,pos=items.map(function(el){return el.getBoundingClientRect().left-base+x;});
+        var t=dir>0?pos.filter(function(p){return p>x+4;})[0]:pos.filter(function(p){return p<x-4;}).pop();
+        if(t===undefined)t=dir>0?tr.scrollWidth:0;
+        tr.scrollTo({left:t,behavior:'smooth'});
+      }
+      pv.addEventListener('click',function(){go(-1);});nx.addEventListener('click',function(){go(1);});
+      tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(1);}if(e.key==='ArrowLeft'){e.preventDefault();go(-1);}});
+      tr.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+      var vids=tr.querySelectorAll('video');
+      if(vids.length&&'IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&en.intersectionRatio>.6){en.target.play().catch(function(){});}else{en.target.pause();}});},{root:tr,threshold:[0,.6]});
+        vids.forEach(function(v){io.observe(v);});
+      }
+    });
   })();
   (function(){
     var ENDPOINT='https://n8n.srv1002998.hstgr.cloud/webhook/dariotorre-candidatura';

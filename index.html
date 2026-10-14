@@ -8,7 +8,7 @@
 <link rel="preload" href="fonts/urbanist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=1">
-<link rel="stylesheet" href="style.css?v=13">
+<link rel="stylesheet" href="style.css?v=14">
 
 <style>[hidden]{display:none!important}</style>
 </head>
@@ -219,11 +219,18 @@
     </div>
 
     <p class="sub-h rv">Cosa dicevano gli studenti</p>
-    <div class="gal4">
-      <div class="phl vert rv" role="img" aria-label="Spazio per una video-recensione"><div><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><strong>Video-recensione</strong>Studentessa 1</div></div>
-      <div class="phl vert rv" role="img" aria-label="Spazio per una video-recensione"><div><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><strong>Video-recensione</strong>Studentessa 2</div></div>
-      <div class="phl vert rv" role="img" aria-label="Spazio per una video-recensione"><div><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><strong>Video-recensione</strong>Studentessa 3</div></div>
-      <div class="phl vert rv" role="img" aria-label="Spazio per una video-recensione"><div><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><strong>Video-recensione</strong>Studentessa 4</div></div>
+    <div class="car car-rev rv" data-car>
+      <div class="car-track" data-car-track tabindex="0" role="region" aria-label="Video-recensioni degli studenti">
+      <figure class="car-item" style="--ar:4/5"><div class="phl" role="img" aria-label="Spazio per una video-recensione"><div><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><strong>Video-recensione</strong>Studentessa 1</div></div></figure>
+      <figure class="car-item" style="--ar:4/5"><div class="phl" role="img" aria-label="Spazio per una video-recensione"><div><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><strong>Video-recensione</strong>Studentessa 2</div></div></figure>
+      <figure class="car-item" style="--ar:4/5"><div class="phl" role="img" aria-label="Spazio per una video-recensione"><div><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><strong>Video-recensione</strong>Studentessa 3</div></div></figure>
+      <figure class="car-item" style="--ar:4/5"><div class="phl" role="img" aria-label="Spazio per una video-recensione"><div><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><strong>Video-recensione</strong>Studentessa 4</div></div></figure>
+      <figure class="car-item" style="--ar:4/5"><div class="phl" role="img" aria-label="Spazio per una video-recensione"><div><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><strong>Video-recensione</strong>Studentessa 5</div></div></figure>
+      </div>
+      <div class="car-nav">
+        <button class="car-btn" type="button" data-car-prev aria-label="Contenuto precedente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button class="car-btn" type="button" data-car-next aria-label="Contenuto successivo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+      </div>
     </div>
 
     <div class="close-row rv">
@@ -488,6 +495,16 @@
       }
       pv.addEventListener('click',function(){go(-1);});nx.addEventListener('click',function(){go(1);});
       tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(1);}if(e.key==='ArrowLeft'){e.preventDefault();go(-1);}});
+      var down=false,moved=false,sx=0,sl=0;
+      tr.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.button!==0)return;down=true;moved=false;sx=e.clientX;sl=tr.scrollLeft;});
+      window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(!moved&&Math.abs(dx)>6){moved=true;car.classList.add('dragging');}if(moved){e.preventDefault();tr.scrollLeft=sl-dx;}});
+      window.addEventListener('pointerup',function(){if(!down)return;down=false;if(!moved)return;
+        var x=tr.scrollLeft,base=tr.getBoundingClientRect().left,best=0,bd=1e9;
+        items.forEach(function(el){var p=el.getBoundingClientRect().left-base+x,d=Math.abs(p-x);if(d<bd){bd=d;best=p;}});
+        var max=tr.scrollWidth-tr.clientWidth;if(x>=max-4)best=max;
+        car.classList.remove('dragging');tr.scrollTo({left:best,behavior:'smooth'});});
+      tr.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
+      tr.addEventListener('dragstart',function(e){e.preventDefault();});
       tr.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
       var vids=tr.querySelectorAll('video');
       if(vids.length&&'IntersectionObserver' in window){

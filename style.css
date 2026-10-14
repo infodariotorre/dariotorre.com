@@ -401,3 +401,9 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
 .car-btn:hover:not(:disabled){background:var(--violet);color:#fff;border-color:var(--violet);transform:translateY(-2px)}
 .car-btn:disabled{opacity:.35;cursor:default;box-shadow:none}
 @media (max-width:640px){.car{--car-h:300px;--fr:56px}.car:not(.at-start){--fl:36px}.car-item{max-width:84%}}
+/* carosello: trascinamento col mouse su desktop + recensioni 4:5 */
+@media (hover:hover) and (pointer:fine){.car-track{cursor:grab}}
+.car.dragging .car-track{cursor:grabbing;scroll-snap-type:none;user-select:none;-webkit-user-select:none}
+.car-item img,.car-item video{-webkit-user-drag:none;user-select:none}
+.car-rev{--car-h:clamp(320px,30vw,420px)}
+@media (max-width:640px){.car-rev{--car-h:300px}}

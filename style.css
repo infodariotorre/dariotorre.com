@@ -379,3 +379,7 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
   .about-ph .float{right:auto}
   .out-row{flex-direction:column;align-items:flex-start;gap:4px}
 }
+/* form: campo trappola anti-spam, errore, stato di invio */
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.form-err{margin:0;padding:12px 14px;border-radius:14px;background:#fdecec;border:1px solid #f5c2c2;color:#9b1c1c;font-size:14px;line-height:1.4}
+.form .btn[disabled]{opacity:.7;cursor:progress}

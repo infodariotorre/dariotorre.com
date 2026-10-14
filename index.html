@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;family=Geist:wght@400;500&amp;display=swap">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 
 <style>[hidden]{display:none!important}</style>
 </head>
@@ -391,8 +391,10 @@
             <div class="f full"><label for="f-pub">Quante persone ti seguono sui social?</label><select id="f-pub" name="pubblico"><option value="">Seleziona una fascia</option><option>Meno di 5.000</option><option>5.000 - 20.000</option><option>20.000 - 100.000</option><option>Più di 100.000</option></select></div>
             <div class="f full"><label for="f-ins">Cosa ti piacerebbe insegnare?</label><textarea id="f-ins" name="insegnare" rows="3" placeholder="Il metodo che usi ogni giorno…"></textarea></div>
           </div>
-          <label class="check" for="f-priv"><input id="f-priv" type="checkbox" required="required"><span>Ho letto l'<a href="#privacy">informativa privacy</a> e accetto di essere ricontattato.</span></label>
+          <div class="hp" aria-hidden="true"><label for="f-sito">Lascia vuoto questo campo</label><input id="f-sito" name="sito_web" type="text" tabindex="-1" autocomplete="off"></div>
+          <label class="check" for="f-priv"><input id="f-priv" name="privacy" type="checkbox" required="required"><span>Ho letto l'<a href="#privacy">informativa privacy</a> e accetto di essere ricontattato.</span></label>
           <button class="btn" type="submit">Invia la candidatura<span class="ar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span></button>
+          <p class="form-err" id="form-err" role="alert" hidden></p>
           <p class="fine">Ti ricontatto solo per valutare il progetto. Niente spam, nessun impegno.</p>
         </form>
       </div>
@@ -459,7 +461,28 @@
     cards.forEach(function(c){setP(c,1)});
     if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!running){running=true;play();}else if(!e.isIntersecting&&running){running=false;clear();cards.forEach(function(c){setP(c,1)});}});},{threshold:.3}).observe(group);}
   })();
-  document.getElementById('apply-form').addEventListener('submit',function(e){e.preventDefault();document.getElementById('form-wrap').hidden=true;document.getElementById('thanks').hidden=false;});
+  (function(){
+    var ENDPOINT='https://n8n.srv1002998.hstgr.cloud/webhook/dariotorre-candidatura';
+    var f=document.getElementById('apply-form'),err=document.getElementById('form-err'),btn=f.querySelector('button[type=submit]'),label=btn.firstChild.nodeValue,t0=Date.now(),busy=false;
+    function showErr(m){err.textContent=m;err.hidden=false;}
+    f.addEventListener('submit',function(e){
+      e.preventDefault();if(busy)return;busy=true;err.hidden=true;
+      btn.disabled=true;btn.firstChild.nodeValue='Invio in corso…';
+      var d=new URLSearchParams(new FormData(f));d.set('t',String(Date.now()-t0));d.set('pagina',location.href);
+      var ctl=new AbortController(),tm=setTimeout(function(){ctl.abort();},20000);
+      fetch(ENDPOINT,{method:'POST',body:d,signal:ctl.signal}).then(function(r){
+        return r.json().catch(function(){return {};}).then(function(j){
+          if(r.ok&&j.ok!==false){document.getElementById('form-wrap').hidden=true;document.getElementById('thanks').hidden=false;return;}
+          if(r.status===400){showErr('Controlla i dati inseriti: '+((j.dettagli||[]).join(', ').toLowerCase()||'alcuni campi non sono validi')+'.');}
+          else{showErr('Non sono riuscito a registrare la candidatura per un problema tecnico. I tuoi dati sono ancora qui: riprova tra un minuto.');}
+          throw 0;
+        });
+      }).catch(function(x){
+        if(x!==0)showErr('Connessione non riuscita. Controlla la rete e riprova: i dati che hai scritto sono ancora qui.');
+        btn.disabled=false;btn.firstChild.nodeValue=label;busy=false;
+      }).finally(function(){clearTimeout(tm);});
+    });
+  })();
 })();
 </script>
 </body>

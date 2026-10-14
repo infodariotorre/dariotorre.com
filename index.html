@@ -8,7 +8,7 @@
 <link rel="preload" href="fonts/urbanist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=1">
-<link rel="stylesheet" href="style.css?v=19">
+<link rel="stylesheet" href="style.css?v=20">
 
 <style>[hidden]{display:none!important}</style>
 </head>
@@ -484,7 +484,7 @@
   show(0);
   var bar=document.getElementById('topbar'), hero=document.getElementById('hero');
   var navEl=bar.querySelector('.nav');
-  function onScroll(){var n=navEl.getBoundingClientRect();bar.classList.toggle('stuck', hero.getBoundingClientRect().bottom < n.top + n.height/2);}
+  function onScroll(){var n=navEl.getBoundingClientRect();bar.classList.toggle('stuck', hero.getBoundingClientRect().bottom < n.top + n.height/2);bar.classList.toggle('at-top', (window.scrollY||window.pageYOffset) < 12);}
   window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll); onScroll();
   /* TELEFONO: notifiche che arrivano una dopo l'altra (ricostruito dal design originale) */
   (function(){

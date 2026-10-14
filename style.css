@@ -477,10 +477,9 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
   .sticky-bar.show{transform:none;opacity:1}
   .sticky-bar.show .sticky-btn{pointer-events:auto}
   .sticky-btn{animation:ctaPulse 2.8s ease-out infinite}
-  /* caroselli più grandi su telefono: stessa altezza, formato rispettato (le foto orizzontali vengono solo rifilate ai lati) */
-  .car{--car-h:400px}
+  /* su telefono solo le video recensioni sono più grandi; lezioni e foto Glamour restano a 300px per non tagliare le foto orizzontali */
   .car-rev{--car-h:390px}
-  .car-item{max-width:88%}
+  .car-rev .car-item{max-width:88%}
 }
 /* didascalie dei numeri nella hero: sempre su due righe bilanciate */
 .stat span{text-wrap:balance}

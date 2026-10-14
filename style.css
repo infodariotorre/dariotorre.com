@@ -386,7 +386,7 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
 /* CAROSELLO "Com'era davvero": stessa altezza per ogni contenuto, anteprima del successivo sfumata */
 .car{--car-h:clamp(300px,34vw,440px);--fl:0px;--fr:120px}
 .car.at-start{--fl:0px}
-.car:not(.at-start){--fl:70px}
+.car.at-end:not(.at-start){--fl:70px}
 .car.at-end{--fr:0px}
 .car-track{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;outline:none;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--fl),#000 calc(100% - var(--fr)),transparent 100%);
@@ -400,7 +400,7 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
 .car-btn{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--violet);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(60,30,140,.08);transition:background .25s,color .25s,transform .25s,opacity .25s}
 .car-btn:hover:not(:disabled){background:var(--violet);color:#fff;border-color:var(--violet);transform:translateY(-2px)}
 .car-btn:disabled{opacity:.35;cursor:default;box-shadow:none}
-@media (max-width:640px){.car{--car-h:300px;--fr:56px}.car:not(.at-start){--fl:36px}.car-item{max-width:84%}}
+@media (max-width:640px){.car{--car-h:300px;--fr:56px}.car.at-end:not(.at-start){--fl:36px}.car-item{max-width:84%}}
 /* carosello: trascinamento col mouse su desktop + recensioni 4:5 */
 @media (hover:hover) and (pointer:fine){.car-track{cursor:grab}}
 .car.dragging .car-track{cursor:grabbing;scroll-snap-type:none;user-select:none;-webkit-user-select:none}

@@ -407,3 +407,10 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
 .car-item img,.car-item video{-webkit-user-drag:none;user-select:none}
 .car-rev{--car-h:clamp(320px,30vw,420px)}
 @media (max-width:640px){.car-rev{--car-h:300px}}
+/* video-recensioni: copertina, play al tocco con audio */
+.rev{position:relative;background:#1d1727}
+.rev-play{position:absolute;inset:0;border:0;padding:0;background:linear-gradient(180deg,rgba(17,13,24,0) 55%,rgba(17,13,24,.55));display:grid;place-items:center;cursor:pointer;transition:opacity .3s}
+.rev-play .play{margin:0;transition:transform .3s}
+.rev-play:hover .play{transform:scale(1.08)}
+.rev-name{position:absolute;left:14px;top:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:var(--display);font-weight:600;font-size:14px;color:var(--ink);pointer-events:none;transition:opacity .3s}
+.rev.playing .rev-play,.rev.playing .rev-name{opacity:0;pointer-events:none}

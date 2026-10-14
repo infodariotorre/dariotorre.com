@@ -558,3 +558,9 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
 /* a capo solo da computer */
 @media (max-width:640px){.dbr{display:none}}
 .lead{text-wrap:balance}
+/* trailer dei corsi: video 16:9 interi, con play come le recensioni */
+.rev.tr video{object-fit:contain;background:#000}
+@media (max-width:640px){
+  .car-tr{--car-h:calc((100vw - 32px) * .9 * 9 / 16)}
+  .car-tr .car-item{max-width:90%}
+}

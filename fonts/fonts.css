@@ -1,0 +1,5 @@
+/* Font ospitati sul nostro server: nessuna richiesta a Google al caricamento della pagina */
+@font-face{font-family:"Urbanist";font-style:normal;font-weight:100 900;font-display:swap;src:url(urbanist.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-style:normal;font-weight:100 1000;font-display:swap;src:url(dm-sans.woff2) format("woff2")}
+@font-face{font-family:"Geist";font-style:normal;font-weight:400;font-display:swap;src:url(geist-400.woff2) format("woff2")}
+@font-face{font-family:"Geist";font-style:normal;font-weight:500;font-display:swap;src:url(geist-500.woff2) format("woff2")}

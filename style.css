@@ -360,7 +360,7 @@ input[type=range]{width:100%;height:44px;accent-color:#9d84ff;cursor:pointer}
   .brand{font-size:18px}
   .hero-shell{padding:8px}
   .hero{border-radius:24px;height:auto;min-height:0;max-height:none;padding-inline:16px}
-  .hero-bg{top:calc(var(--nav-top) + var(--nav-h) - 10px);bottom:auto;left:0;right:0;width:100%;height:56%;object-position:74% 0%;
+  .hero-bg{top:calc(var(--nav-top) + var(--nav-h) - 10px);bottom:auto;left:0;right:0;width:100%;height:56%;object-position:97% 0%;
     -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%);mask-image:linear-gradient(180deg,transparent 0,#000 8%)}
   .hero-shade{background:linear-gradient(180deg,rgba(10,7,16,.55) 0%,rgba(10,7,16,0) 18%,rgba(10,7,16,0) 34%,rgba(10,7,16,.85) 52%,var(--night) 62%)}
   .hero-copy{justify-content:flex-end;padding-top:clamp(225px,60vw,290px);gap:22px}

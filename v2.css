@@ -1,0 +1,56 @@
+/* Variante v2 ("proposta editore"): stili aggiuntivi, non toccano la pagina originale */
+
+/* pulsante fisso senza pulsazione */
+.v2 .sticky-btn{animation:none;box-shadow:0 10px 26px rgba(108,74,217,.3)}
+
+/* il modello: le due card affiancate, senza telefono */
+.v2 #modello .model-grid{grid-template-columns:minmax(0,1fr)}
+.v2 #modello .model-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+
+/* l'accordo, nero su bianco */
+.deal-head{margin-top:clamp(56px,7vw,96px);display:flex;flex-direction:column;gap:16px}
+.deal-t{font-family:var(--display);font-size:clamp(30px,3.6vw,48px);font-weight:500;line-height:1.06;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.deal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(24px,3vw,36px)}
+.deal-i{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.deal-ic{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--violet-soft);color:var(--violet);margin-bottom:6px}
+.deal-i h3{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.25;margin:0;letter-spacing:-.01em}
+.deal-i p{margin:0;font-size:15.5px;line-height:1.6;color:var(--muted)}
+.honest{margin-top:16px;border-radius:22px;background:var(--night);color:#fff;padding:clamp(22px,3vw,32px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 28px;align-items:baseline}
+.honest b{font-family:var(--display);font-size:clamp(20px,2vw,24px);font-weight:600;white-space:nowrap}
+.honest p{margin:0;font-size:16px;line-height:1.65;color:rgba(255,255,255,.78);max-width:72ch}
+
+/* segnaposto da completare (visibili solo in questa proposta) */
+.todo-tag{display:inline-block;align-self:flex-start;padding:4px 10px;border-radius:999px;background:#fff3b0;color:#5a4500;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.todo-box{margin-top:clamp(56px,7vw,96px);border:2px dashed #d9cff7;border-radius:26px;padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:14px;background:#fcfbff}
+.todo-box .car-title{margin:0}
+.todo-box p{margin:0;color:var(--muted);font-size:16px;line-height:1.65;max-width:75ch}
+.v2 .todo-box + .car{margin-top:clamp(56px,7vw,96px)}
+
+/* video di presentazione sopra il ritratto */
+.vid-todo{position:absolute;left:16px;right:16px;top:16px;display:flex;flex-direction:column;gap:6px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:2px dashed #d9cff7}
+.vid-todo b{font-family:var(--display);font-size:17px;line-height:1.25;color:var(--ink)}
+.vid-todo > span:last-child{font-size:14px;line-height:1.5;color:var(--muted)}
+.vid-play{position:absolute;right:16px;top:14px;width:40px;height:40px;border-radius:50%;background:var(--violet);color:#fff;display:grid;place-items:center}
+
+/* link di verifica */
+.verify{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
+.verify-l{width:100%;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.verify a{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:500;transition:border-color .2s,color .2s}
+.verify a:hover{border-color:var(--violet);color:var(--violet)}
+.verify a.todo-link{border-style:dashed;border-color:#d9cff7;color:var(--muted)}
+.verify a em{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:#fff3b0;color:#5a4500;padding:2px 7px;border-radius:999px}
+
+/* con chi lavoro: una sola colonna */
+.fit.fit-one{grid-template-columns:minmax(0,1fr);max-width:760px}
+
+@media (max-width:1000px){
+  .deal{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .v2 #modello .model-cards{grid-template-columns:minmax(0,1fr)}
+  .deal{grid-template-columns:minmax(0,1fr);gap:12px}
+  .deal-i{padding:20px}
+  .honest{grid-template-columns:minmax(0,1fr)}
+  .v2 .hero-side br{display:none}
+  .vid-todo{left:12px;right:12px;top:12px}
+}
